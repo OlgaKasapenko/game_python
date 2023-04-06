@@ -14,9 +14,11 @@ class bird():
     self.buttondown = False
 
   def output(self):
+    #отрисовываем птичку
     self.screen.blit(self.image, self.rect)
 
   def bird_position(self):
+    #если нажаты кнопки (вверх или вниз), двигаем птичку
     if self.buttondown and self.rect.bottom < self.screen_rect.bottom:
       self.centy += 1
     if self.buttonup and self.rect.top > self.screen_rect.top:
