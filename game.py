@@ -1,4 +1,5 @@
 import pygame
+import pygame_menu
 import sys
 from bird_part import bird
 from cloud_part import Cloud
@@ -13,7 +14,6 @@ def run():
   pygame.display.set_caption("Игра")
   pygame.mixer.music.load("birds_song.mp3")
   black_color = (0, 0, 0)
-  endgame_color = (200, 200, 200)
   bird_1 = bird(screen)
   cloud_1 = Group()
   number_of_clouds = 0
@@ -44,7 +44,7 @@ def run():
     for cl in cloud_1.copy():
       if bird_1.rect.right <= cl.rect.right and bird_1.rect.left >= cl.rect.left and bird_1.rect.top <= cl.rect.bottom and bird_1.rect.bottom >= cl.rect.top:
         data_file = open("data.txt", "a")
-        data_file.write(str(count) + '\n')
+        data_file.write(str(user_name.get_value()) + ' ' + str(count) + '\n')
         data_file.close()
         pygame.mixer.music.load("game_over_sound.mp3")
         pygame.mixer.music.play(0)
@@ -54,4 +54,14 @@ def run():
         sys.exit()
     pygame.display.flip()
 
-run()
+
+pygame.init()
+screen0 = pygame.display.set_mode((500, 500))
+pygame.display.set_caption("Игра")
+screen0.fill((100, 100, 100))
+menu = pygame_menu.Menu('хотите сыграть?', 500, 500,
+                      theme=pygame_menu.themes.THEME_DARK)
+user_name = menu.add.text_input('Имя :', default='Маша')
+menu.add.button('Играть!', run)
+menu.add.button('Выйти', pygame_menu.events.EXIT)
+menu.mainloop(screen0)
