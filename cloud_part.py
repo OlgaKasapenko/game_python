@@ -10,13 +10,13 @@ class Cloud(pygame.sprite.Sprite):
     self.b = random.randint(100, 250)
     self.c = random.randint(100, 250)
     self.color = (self.a, self.b, self.c)
-    self.speed = 1.5
+    self.speed = 0.5
     self.start_y_point = random.randint(screen.get_rect().top, screen.get_rect().bottom)
     self.rect.center = (screen.get_rect().right, self.start_y_point)
     self.centx = float(self.rect.centerx)
 
-  def update(self):
-    self.centx -= self.speed
+  def update(self, count):
+    self.centx -= self.speed + 0.1 * count
     self.rect.centerx = self.centx
 
   def drawcl(self):

@@ -7,7 +7,7 @@ class bird():
     self.image = pygame.image.load('birdik.png')
     self.rect = self.image.get_rect()
     self.screen_rect = screen.get_rect()
-    self.rect.centerx = self.screen_rect.centerx
+    self.rect.centerx = self.screen_rect.centerx / 2
     self.rect.centery = self.screen_rect.centery
     self.centy = float(self.rect.centery)
     self.buttonup = False

@@ -35,7 +35,7 @@ def run():
     for cl in cloud_1.sprites():
       cl.drawcl()
     bird_1.output()
-    cloud_1.update()
+    cloud_1.update(count)
     #удаление облаков после выхода за экран
     for cl in cloud_1.copy():
       if cl.rect.right <= screen.get_rect().left:
