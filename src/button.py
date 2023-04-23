@@ -4,6 +4,7 @@ from src.bird_part import bird
 
 
 def buttons(bird):
+  """fix button presses"""
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       sys.exit()

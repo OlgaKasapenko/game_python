@@ -8,10 +8,8 @@ from pygame import sprite
 from pygame.sprite import Group
 import time
 
-def a():
-  print('5')
-
 def run():
+  """function for the process in the game as a whole"""
   pygame.init()
   screen = pygame.display.set_mode((500, 500))
   pygame.display.set_caption("Игра")
@@ -25,13 +23,13 @@ def run():
   pygame.mixer.music.play(-1)
 
   while True:
-    #добавление облаков
+    """adding clouds"""
     if number_of_clouds == 0:
       new_cloud = Cloud(screen)
       cloud_1.add(new_cloud)
       number_of_clouds += 1
       count += 1
-    #управление птицей
+    """manage the bird"""
     button.buttons(bird_1)
     bird_1.bird_position()
     screen.fill(black_color)
@@ -39,7 +37,7 @@ def run():
       cl.drawcl()
     bird_1.output()
     cloud_1.update(count)
-    #удаление облаков после выхода за экран
+    """deleting clouds if they are outside"""
     for cl in cloud_1.copy():
       if cl.rect.right <= screen.get_rect().left:
         cloud_1.remove(cl)
@@ -58,10 +56,12 @@ def run():
     pygame.display.flip()
 
 def sort_key(line):
-    parts = line.split()
-    return int(parts[0])
+  """comparator for sorting"""
+  parts = line.split()
+  return int(parts[0])
 
 def sort_lines(filename):
+  """sort lines into a file"""
   with open(filename, 'r') as f:
       lines = f.readlines()
   lines = sorted(lines, key=sort_key, reverse=True)
@@ -69,6 +69,7 @@ def sort_lines(filename):
       f.writelines(lines)
 
 def read_beg_of_file(filename):
+  """return first 3 strings of the file"""
   with open(filename, 'r') as f:
     text = ''
     for i in range(3):
@@ -76,6 +77,7 @@ def read_beg_of_file(filename):
   return text
 
 def record_t():
+  """showing record table"""
   pygame.mixer.music.load("./music/джентельмены_удачи.mp3")
   pygame.mixer.music.play(-1)
   pygame.init()
@@ -89,6 +91,7 @@ def record_t():
   menu2.mainloop(screen2)
 
 def menu_main():
+  """function for main menu screen"""
   pygame.init()
   pygame.mixer.music.load("./music/menu_sound.mp3")
   pygame.mixer.music.play(-1)
@@ -101,5 +104,3 @@ def menu_main():
   menu.add.button('Таблица рекордов', record_t)
   menu.add.button('Выйти', pygame_menu.events.EXIT)
   menu.mainloop(screen0)
-
-# menu()

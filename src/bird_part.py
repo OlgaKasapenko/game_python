@@ -1,8 +1,10 @@
 import pygame
 
 class bird():
+  """class for functions for object - bird"""
 
   def __init__(self, screen):
+    """add fields corresponding to the location of the bird on the screen"""
     self.screen = screen
     self.image = pygame.image.load('./images/birdik.png')
     self.rect = self.image.get_rect()
@@ -14,11 +16,11 @@ class bird():
     self.buttondown = False
 
   def output(self):
-    #отрисовываем птичку
+    """draw a bird"""
     self.screen.blit(self.image, self.rect)
 
   def bird_position(self):
-    #если нажаты кнопки (вверх или вниз), двигаем птичку
+    """move the bird if the up or down buttons are pressed"""
     if self.buttondown and self.rect.bottom < self.screen_rect.bottom:
       self.centy += 1
     if self.buttonup and self.rect.top > self.screen_rect.top:

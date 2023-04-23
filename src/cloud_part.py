@@ -2,7 +2,9 @@ import pygame
 import random
 
 class Cloud(pygame.sprite.Sprite):
+  """class for functions for object - cloud"""
   def __init__(self, screen):
+    """add fields corresponding to the location of the clouds on the screen"""
     super(Cloud, self).__init__()
     self.screen = screen
     self.rect = pygame.Rect(0, 0, 100, 300)
@@ -16,9 +18,11 @@ class Cloud(pygame.sprite.Sprite):
     self.centx = float(self.rect.centerx)
 
   def update(self, count):
+    """move the cloud on the screen"""
     self.centx -= self.speed + 0.1 * count
     self.rect.centerx = self.centx
 
   def drawcl(self):
+    """draw a cloud"""
     pygame.draw.rect(self.screen, self.color, self.rect)
 
