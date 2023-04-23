@@ -78,7 +78,7 @@ def read_beg_of_file(filename):
 
 def record_t():
   """showing record table"""
-  pygame.mixer.music.load("./music/джентельмены_удачи.mp3")
+  pygame.mixer.music.load("./music/luck_song.mp3")
   pygame.mixer.music.play(-1)
   pygame.init()
   screen2 = pygame.display.set_mode((500, 500))
