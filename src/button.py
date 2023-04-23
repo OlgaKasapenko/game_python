@@ -1,6 +1,6 @@
 import pygame
 import sys
-from bird_part import bird 
+from src.bird_part import bird
 
 
 def buttons(bird):

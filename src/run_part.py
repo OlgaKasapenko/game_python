@@ -1,24 +1,27 @@
 import pygame
 import pygame_menu
 import sys
-from bird_part import bird
-from cloud_part import Cloud
-import button
+from src.bird_part import bird
+from src.cloud_part import Cloud
+import src.button as button
 from pygame import sprite
 from pygame.sprite import Group
 import time
+
+def a():
+  print('5')
 
 def run():
   pygame.init()
   screen = pygame.display.set_mode((500, 500))
   pygame.display.set_caption("Игра")
-  pygame.mixer.music.load("birds_song.mp3")
+  pygame.mixer.music.load("./music/birds_song.mp3")
   black_color = (0, 0, 0)
   bird_1 = bird(screen)
   cloud_1 = Group()
   number_of_clouds = 0
   count = 0
-  game_over_pic = pygame.image.load('game_over.png')
+  game_over_pic = pygame.image.load('./images/game_over.png')
   pygame.mixer.music.play(-1)
 
   while True:
@@ -43,10 +46,10 @@ def run():
         number_of_clouds -= 1
     for cl in cloud_1.copy():
       if bird_1.rect.right <= cl.rect.right and bird_1.rect.left >= cl.rect.left and bird_1.rect.top <= cl.rect.bottom and bird_1.rect.bottom >= cl.rect.top:
-        data_file = open("data.txt", "a")
+        data_file = open("./data/data.txt", "a")
         data_file.write(str(str(count) + ' ' + user_name.get_value()) + '\n')
         data_file.close()
-        pygame.mixer.music.load("game_over_sound.mp3")
+        pygame.mixer.music.load("./music/game_over_sound.mp3")
         pygame.mixer.music.play(0)
         screen.blit(game_over_pic, (0, 0))
         pygame.display.flip()
@@ -73,22 +76,21 @@ def read_beg_of_file(filename):
   return text
 
 def record_t():
-  pygame.mixer.music.load("джентельмены_удачи.mp3")
+  pygame.mixer.music.load("./music/джентельмены_удачи.mp3")
   pygame.mixer.music.play(-1)
   pygame.init()
   screen2 = pygame.display.set_mode((500, 500))
   pygame.display.set_caption("Рекорды")
   menu2 = pygame_menu.Menu('рекорды', 500, 500, theme=pygame_menu.themes.THEME_DARK)
-  sort_lines('data.txt')
-  text = read_beg_of_file('data.txt')
+  sort_lines('./data/data.txt')
+  text = read_beg_of_file('./data/data.txt')
   menu2.add.label(text)
-  menu2.add.button('Назад', menu)
+  menu2.add.button('Назад', menu_main)
   menu2.mainloop(screen2)
 
-
-def menu():
+def menu_main():
   pygame.init()
-  pygame.mixer.music.load("menu_sound.mp3")
+  pygame.mixer.music.load("./music/menu_sound.mp3")
   pygame.mixer.music.play(-1)
   screen0 = pygame.display.set_mode((500, 500))
   pygame.display.set_caption("Игра")
@@ -100,4 +102,4 @@ def menu():
   menu.add.button('Выйти', pygame_menu.events.EXIT)
   menu.mainloop(screen0)
 
-menu()
+# menu()
